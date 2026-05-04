@@ -2,18 +2,12 @@ object rolando {
     const mochila = []
     var limite = 2
 
-    method encontar(artefacto) {
-      if(self.hayEspacio()) mochila.add(artefacto) 
-    }
+    method encontar(artefacto) { if(self.hayEspacio()) mochila.add(artefacto) }
 
-    method hayEspacio() {
-        return mochila.size() < limite 
-    }
+    method hayEspacio() { return mochila.size() < limite }
 
-    method guardarEn(castillo) {
-        mochila.addAll(castillo.almacen())
+    method guardarEn(castillo) { castillo.guardarTodo(mochila) self.mochilaVacia()
         //mochila.forEach({ artefacto => castillo.guardar(artefacto) })
-        mochila.clear()
     }
 
     method mochilaVacia() {
@@ -39,8 +33,8 @@ object rolando {
 object castillo {
     const almacen = []
 
-    method guardar(unElemento) {
-      almacen.add(unElemento)
+    method guardarTodo(artefactos) {
+        almacen.addAll(artefactos)
     }
 
     method almacen() {
