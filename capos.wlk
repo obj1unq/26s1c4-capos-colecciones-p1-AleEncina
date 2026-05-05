@@ -26,11 +26,9 @@ object rolando {
       return mochila.clear()
     }
 
-    method artefactosConsigo() = mochila.size()
+    method artefactosTotales() = mochila + castillo.almacen 
 
-    method artefactosTotales() = self.artefactosConsigo() + castillo.artefactosAlmacenados()
-
-    method estaEnLaMochila(artefacto) = mochila.contains(artefacto)
+    method esDeSuPropiedad(artefacto) = self.artefactosTotales().contains(artefacto)
 }
 
 object castillo {
