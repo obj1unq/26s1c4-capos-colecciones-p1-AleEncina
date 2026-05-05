@@ -1,14 +1,15 @@
 import capos.*
 
-describe "ronaldo"{
+describe "rolando"{
 
 
 test "encontrando con limite 2" {
-	ronaldo.encontrar(espada)
-	rolando.encontrar(libro)
-	rolando.encontrar(collar)
+	rolando.encontar(espada)
+	rolando.encontar(libro)
+	rolando.encontar(collar)
 
-	assert.equals(#{espada,libro}, rolando.artefactos())
+	assert.equals([espada,libro], rolando.mochila)
+
 }
 
 }
