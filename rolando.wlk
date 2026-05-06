@@ -46,16 +46,15 @@ object rolando {
 
     method esDeSuPropiedad(artefacto) = self.artefactosTotales().contains(artefacto)
 
-    method poderEnBatalla() = poderBase + mochila.forEach( { artefacto => artefacto.darPoderAlHeroe() })
+    method poderDePelea() = poderBase + mochila.sun { artefacto => artefacto.poder(poderBase)}
     
     method aumentarPoderBase() {
       poderBase += 1
     }
 
     method batallar() {
-      var batallasRealizadas = 0
       self.aumentarPoderBase()
-      self.poderEnBatalla()
+      self.poderDePelea()
     }
 }
 
