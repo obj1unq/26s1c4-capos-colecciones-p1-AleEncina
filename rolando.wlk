@@ -1,3 +1,6 @@
+import artefactos.*
+import castillo.*
+
 object rolando {
     const mochila = []
     var property poderBase = 5
@@ -44,55 +47,4 @@ object rolando {
     }
 }
 
-object castillo {
-    const almacen = []
-
-    method almacen() {
-      return almacen
-    }
-
-    method almacenar(artefactos) {
-        almacen.addAll(artefactos)
-    }
-
-    method artefactosAlmacenados() {
-      return almacen.size()
-    }
-}
-
-
-object espada {
-    const poderBaseDelHeroe = rolando.poderBase()
-
-  method darPoderAlHeroe() {
-    if(self.esElPrimerUso())  else self.poderReducido()     
-  }
-
-  method esElPrimerUso() = artefatosDelHeroe.get(0) == self 
-
-
-  method poderReducido() {
-    return (poderBaseDelHeroe / 2).truncate(1)
-  }
-
-
-}
-
-
-object libro {
-
-}
-
-
-object collar {
-
-}
-
-object armadura {
-  const poder = 6
-
-  method darPoderAlHeroe() {
-    return poder
-  }
-}
 
