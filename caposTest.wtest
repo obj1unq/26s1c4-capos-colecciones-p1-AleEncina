@@ -1,15 +1,49 @@
-import capos.*
+import rolando.*
+import castillo.*
+import artefactos.*
 
 describe "rolando"{
+test "Encuentra y recolectar" {
+	//Configuración -> Vacia
 
+	//Ejercitación 
+	rolando.encontar(espadaDelDestino)
 
-test "encontrando con limite 2" {
-	rolando.encontar(espada)
-	rolando.encontar(libro)
-	rolando.encontar(collar)
+	//Verificación 
+	assert.that(rolando.mochila.contains(espadaDelDestino))
+	assert.equals([espadaDelDestino], rolando.encuentros())
+}
 
-	assert.equals([espada,libro], rolando.mochila)
+test "Encuentra y no recolecta" {
+	//Configuración -> lleno la mochila
+	self.llenarMochila()
 
+	//Ejercitación -> con la mochila llena no puede seguir recolectando
+	rolando.encontar(collarDivino)
+
+	//Verificación 
+	assert.notThat(rolando.mochila().contains(collarDivino))
+	assert.that(rolando.encuentros().contains(collarDivino))
+	assert.equals([espadaDelDestino, libroDeHechizos, collarDivino], rolando.encuentros)
+}
+
+test "No se puede recolectar con mochila llena" {
+	//Configuración -> lleno la mochila
+	self.llenarMochila()
+
+	//Ejercitación -> (+ verificacion) -> con la mochila llena no puede seguir recolectando
+	assert.throwsExceptionWithMessage(
+	 "No tengo lugar en la mochila",	
+		{ rolando.recolectar(collarDivino) })
+
+	//Verificación adicional
+	assert.equals(2, rolando.mochila().size())
+	assert.notThat(rolando.mochila().contains(collarDivino))
+}
+
+method llenarMochila(){
+	rolando.encontar(espadaDelDestino)
+	rolando.encontar(libroDeHechizos)
 }
 
 }

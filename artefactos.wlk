@@ -1,7 +1,7 @@
 import rolando.*
 import castillo.*
 
-object espada {
+object espadaDelDestino {
     const poderBaseDelHeroe = rolando.poderBase()
 
   method darPoderAlHeroe() {
@@ -19,12 +19,12 @@ object espada {
 }
 
 
-object libro {
+object libroDeHechizos {
 
 }
 
 
-object collar {
+object collarDivino {
     var poder = 3
 
     const poderBaseDelHeroe = rolando.poderBase()
@@ -40,7 +40,7 @@ object collar {
     }
 }
 
-object armadura {
+object armaduraDeAceroValyrio {
   const poder = 6
 
   method darPoderAlHeroe() {
