@@ -15,4 +15,8 @@ object castillo {
     method artefactosAlmacenados() {
       return almacen.size()
     }
+
+    method artefactoMasPoderoso() {
+      return almacen.max { artefacto => artefacto.poder(rolando.poderBase)}
+    }
 }
