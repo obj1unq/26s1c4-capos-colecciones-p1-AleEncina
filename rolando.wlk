@@ -30,7 +30,6 @@ object rolando {
 
     method hayEspacioEnLaMochila() = self.nroArtefactosRecolectados() < tamanioMochila 
 
-
     method nroArtefactosRecolectados() = mochila.size()
 
     method guardarEn(castillo) { 
@@ -48,13 +47,13 @@ object rolando {
 
     method poderDePelea() = poderBase + mochila.sun { artefacto => artefacto.poder(poderBase)}
     
-    method aumentarPoderBase() {
+    method aumentarPoderBaseEnUno() {
       poderBase += 1
     }
 
     method batallar() {
-      self.aumentarPoderBase()
-      self.poderDePelea()
+      self.aumentarPoderBaseEnUno()
+      mochila.forEach { artefacto => artefacto.usar() }
     }
 }
 
