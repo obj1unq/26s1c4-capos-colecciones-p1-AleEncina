@@ -1,5 +1,7 @@
 import artefactos.*
 import castillo.*
+import enemigos.*
+
 
 object rolando {
     const mochila = []
@@ -55,6 +57,18 @@ object rolando {
       self.aumentarPoderBaseEnUno()
       mochila.forEach { artefacto => artefacto.usar() }
     }
+
+    method puedeDerrotar(enemigos) {
+      return enemigos.filter({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
+    }
+
+    method puedeConquistarUbicacionesDe(enemigos) = enemigos.map({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
+
+     method esPoderoso(enemigos) {
+      return enemigos.all({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
+    }
+
+    
 }
 
 

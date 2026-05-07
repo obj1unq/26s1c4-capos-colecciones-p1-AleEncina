@@ -12,13 +12,14 @@ object espadaDelDestino {
 }
 
 object libroDeHechizos {
-    const hechizos = #{self.bendicion(), self.invisibilidad(rolando.poderBase()), self.invocación()}
+    const hechizos = [self.bendicion(), self.invisibilidad(rolando.poderBase()), self.invocación()]
     
-    method poder(poderBase) = if(self.hayHechizosEnElLibro()) hechizos.first()  else self.nulo()
+    method poder(poderBase) = if(self.hayHechizosEnElLibro()) hechizos.first() else self.nulo()
         
     method usar() {
-        const hechizoAQuitar = hechizos.first() 
-        hechizos.remove(hechizoAQuitar) 
+        hechizos.drop(hechizos.first())
+        //const hechizoAQuitar = hechizos.first() 
+        //hechizos.remove(hechizoAQuitar) 
     }
 
     method hayHechizosEnElLibro() = self.nroDeHechizosEnElLibro() > 0
@@ -46,7 +47,7 @@ object libroDeHechizos {
 object collarDivino {
     var cantBatallas = 0
     
-    method poder(poderBase) = 3 + if (poderBase > 6) cantBatallas  else 0 
+    method poder(poderBase) = 3 + if (poderBase > 6) cantBatallas else 0 
     
     method usar() { 
         cantBatallas += 1 
