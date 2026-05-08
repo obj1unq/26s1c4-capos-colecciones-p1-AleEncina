@@ -37,7 +37,7 @@ object libroDeHechizos {
     }
 
     method invocación() {
-      return castillo.artefactoMasPoderoso()
+      return castillo.hayArtefactoMasPoderoso()
     }
 
     method nulo() {
