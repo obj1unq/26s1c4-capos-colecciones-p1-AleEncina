@@ -2,7 +2,7 @@ import rolando.*
 import castillo.*
 import artefactos.*
 
-describe "rolando"{
+describe "rolandoTest"{
 test "Encuentra y recolectar" {
 	//Configuración -> Vacia
 
