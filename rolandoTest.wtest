@@ -2,7 +2,7 @@ import rolando.*
 import castillo.*
 import artefactos.*
 
-describe "rolandoTest"{
+describe "rolandoTest1"{
 test "Encuentra y recolectar" {
 	//Configuración -> Vacia
 
@@ -41,9 +41,16 @@ test "No se puede recolectar con mochila llena" {
 	assert.notThat(rolando.mochila().contains(collarDivino))
 }
 
+test "Guardar en el castillo" {
+	//Configuración -> lleno la mochila
+	self.llenarMochila()
+}
+
+
 method llenarMochila(){
 	rolando.encontar(espadaDelDestino)
 	rolando.encontar(libroDeHechizos)
 }
+
 
 }
