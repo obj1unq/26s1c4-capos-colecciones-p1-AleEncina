@@ -9,6 +9,10 @@ object espadaDelDestino {
     method uso() { 
         fueUsada = true 
     } 
+
+    method esUnoFatal(poderBase, enemigo) = self.poderCon(poderBase) > enemigo.poderDeCombate()
+
+    method poderCon(poderBase) = self.poder(poderBase) + poderBase
 }
 
 object libroDeHechizos {
@@ -18,11 +22,9 @@ object libroDeHechizos {
         
     method usar() {
         hechizos.drop(hechizos.first())
-        //const hechizoAQuitar = hechizos.first() 
-        //hechizos.remove(hechizoAQuitar) 
     }
 
-    method hayHechizosEnElLibro() = self.nroDeHechizosEnElLibro() > 0
+    method hayHechizosEnElLibro() = self.nroDeHechizosEnElLibro() > self.nulo()
     
     method nroDeHechizosEnElLibro() = hechizos.size()
 
@@ -41,6 +43,10 @@ object libroDeHechizos {
     method nulo() {
       return 0
     }
+
+    method esUnoFatal(poderBase, enemigo) = self.poderCon(poderBase) > enemigo.poderDeCombate()
+
+    method poderCon(poderBase) = self.poder(poderBase) + poderBase
 }
 
 
@@ -52,12 +58,19 @@ object collarDivino {
     method usar() { 
         cantBatallas += 1 
     } 
+
+    method esUnoFatal(poderBase, enemigo) = self.poderCon(poderBase) > enemigo.poderDeCombate()
+
+    method poderCon(poderBase) = self.poder(poderBase) + poderBase
 }
 
 object armaduraDeAceroValyrio {
     method poder(poderBase) = 6
     
     method usar() {}    //Aunque como no se usa, se lo necesita para no romper el polimorfismo.
-  
+    
+    method esUnoFatal(poderBase, enemigo) = self.poderCon(poderBase) > enemigo.poderDeCombate()
+
+    method poderCon(poderBase) = self.poder(poderBase) + poderBase
 }
 

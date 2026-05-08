@@ -64,11 +64,13 @@ object rolando {
 
     method puedeConquistarUbicacionesDe(enemigos) = enemigos.map({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
 
-     method esPoderoso(enemigos) {
-      return enemigos.all({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
-    }
-
+     method esPoderosoAnte(enemigos) = enemigos.all({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
     
+    method tieneArtefactoFatalContra(enemigo) = mochila.any({ artefacto => artefacto.esUnoFatal(poderBase, enemigo) })
+
+    method obtenerArtefactoFatalContra(enemigo) {
+      return mochila.filtrer({ artefacto => artefacto.esUnoFatal(poderBase, enemigo) })
+    }
 }
 
 
