@@ -1,0 +1,33 @@
+import rolando.*
+import artefactos.*
+import castillo.*
+
+describe "Rolando batalla con artefactos" {
+test "Ejemplo 2.1" {
+	//Configuración -> Cambio el tamanio de la mochila y la lleno
+	rolando.tamanioMochila(3)
+	self.llenarMochila()
+
+	//Ejercitación (+ verificacion) -> Verifico el poder de pelea de Rolando con los artefactos en la mochila
+	assert.equals(19, rolando.poderDePelea())
+
+	//Primera verificación -> Rolando batalla por primera vez y aumenta su poder base en 1 con los efectos de los artefactos.
+	rolando.batallar()
+	assert.equals(6, rolando.poderBase())
+	assert.equals(3, espadaDelDestino.poder(rolando.poderBase()))
+	assert.equals(3, collarDivino.poder(rolando.poderBase()))
+
+	//Segunda verificación -> Rolando batalla por segunda vez y aumenta su poder base en 1 con los efectos de los artefactos.
+	rolando.batallar()
+	assert.equals(7, rolando.poderBase())
+	assert.equals(3.5, espadaDelDestino.poder(rolando.poderBase()))
+	assert.equals(5, collarDivino.poder(rolando.poderBase()))
+}
+
+method llenarMochila() {
+    rolando.encontar(espadaDelDestino)
+	rolando.encontar(armaduraDeAceroValyrio)
+	rolando.encontar(collarDivino)
+}
+
+}

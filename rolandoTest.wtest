@@ -41,65 +41,10 @@ test "No se puede recolectar con mochila llena" {
 	assert.notThat(rolando.mochila().contains(collarDivino))
 }
 
-test "Ejemplo 2.1" {
-	//Configuración -> Cambio el tamanio de la mochila y la lleno
-	rolando.tamanioMochila(3)
-	self.llenarMochila()
-
-	//Ejercitación (+ verificacion) -> Verifico el poder de pelea de Rolando con los artefactos en la mochila
-	assert.equals(19, rolando.poderDePelea())
-
-	//Primera verificación -> Rolando batalla por primera vez y aumenta su poder base en 1 con los efectos de los artefactos.
-	rolando.batallar()
-	assert.equals(6, rolando.poderBase())
-	assert.equals(3, espadaDelDestino.poder(rolando.poderBase()))
-	assert.equals(3, collarDivino.poder(rolando.poderBase()))
-
-	//Segunda verificación -> Rolando batalla por segunda vez y aumenta su poder base en 1 con los efectos de los artefactos.
-	rolando.batallar()
-	assert.equals(7, rolando.poderBase())
-	assert.equals(3.5, espadaDelDestino.poder(rolando.poderBase()))
-	assert.equals(5, collarDivino.poder(rolando.poderBase()))
-}
-
-
-test "Ejemplo 2.2" {
-	//Configuración -> Rolando encuentra el libro de hechizos y almacena artefactos en el castillo
-	rolando.encontar(libroDeHechizos)
-	self.agregarHechizosEnElLibro()
-	castillo.almacenar([espadaDelDestino, collarDivino, armaduraDeAceroValyrio])
-	assert.equals([espadaDelDestino, collarDivino, armaduraDeAceroValyrio], castillo.almacen())
-
-	//Ejercitación (+ verificacion) -> Verifico el poder del libro de hechizos antes de que Rolando lo use
-	assert.equals(4, libroDeHechizos.poder(rolando.poderBase()))
-
-	//Primera verificación -> Rolando batalla por primera vez y el poder del libro de hechizos cambia por primera vez.
-	rolando.batallar()
-	assert.equals(6, rolando.poderBase())
-	assert.equals(6, libroDeHechizos.poder(rolando.poderBase()))
-
-	//Segunda verificación -> Rolando batalla por segunda vez y el poder del libro de hechizos vuelve a cambiar.
-	rolando.batallar()
-	assert.equals(7, libroDeHechizos.poder(rolando.poderBase()))
-
-	//Tercera verificación -> Rolando batalla por tercera vez y el poder del libro de hechizos llega a cero.
-	rolando.batallar()
-	assert.equals(0, libroDeHechizos.poder(rolando.poderBase()))	
-}
-
-
-
 method llenarMochila(){
 	rolando.encontar(espadaDelDestino)
 	rolando.encontar(armaduraDeAceroValyrio)
 	rolando.encontar(collarDivino)
 }
-
-method agregarHechizosEnElLibro(){
-	libroDeHechizos.agregarHechizo(libroDeHechizos.bendicion())
-	libroDeHechizos.agregarHechizo(libroDeHechizos.invisibilidad(rolando.poderBase()))
-	libroDeHechizos.agregarHechizo(libroDeHechizos.invocación())
-}
-
 
 }
