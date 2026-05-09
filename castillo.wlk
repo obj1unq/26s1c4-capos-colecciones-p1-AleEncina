@@ -2,33 +2,27 @@ import rolando.*
 import artefactos.*
 
 object castillo {
-    const almacen = []
-    const nulo = 0
+  const almacen = []
 
-    method almacen() {
-      return almacen
-    }
+  method almacen() {
+    return almacen
+  }
 
-    method almacenar(artefactos) {
-        almacen.addAll(artefactos)
-    }
+  method vaciarAlmacen() {
+    return almacen.clear()
+  }
 
-    method artefactosAlmacenados() {
-      return almacen.size()
-    }
+  method almacenar(artefactos) {
+    almacen.addAll(artefactos)
+  }
 
-    method hayArtefactoMasPoderoso() {
-      if(not self.hayAlMenosUnArtefacto()) {
-        self.error("No hay artefactos en el castillo")
-      }
-      return self.artefactoMasPoderoso()
-    }
+  method artefactosAlmacenados() {
+    return almacen.size()
+  }
 
-    method artefactoMasPoderoso() {
-      return almacen.max { artefacto => artefacto.poder(rolando.poderBase)}
-    }
+  method artefactoMasPoderoso() {
+    return almacen.max({ artefacto => artefacto.poder(rolando.poderBase())})
+  }
 
-    method hayAlMenosUnArtefacto() = self.nroArtefactosAlmacenados() > nulo
-
-    method nroArtefactosAlmacenados() = almacen.size()
+  method noHayArtefactos() = almacen.isEmpty()
 }

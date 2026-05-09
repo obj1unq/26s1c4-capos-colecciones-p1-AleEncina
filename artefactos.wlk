@@ -6,7 +6,7 @@ object espadaDelDestino {
 
     method poder(poderBase) = if(fueUsada) poderBase / 2 else poderBase
 
-    method uso() { 
+    method usar() { 
         fueUsada = true 
     } 
 
@@ -16,12 +16,16 @@ object espadaDelDestino {
 }
 
 object libroDeHechizos {
-    const hechizos = [self.bendicion(), self.invisibilidad(rolando.poderBase()), self.invocación()]
+    const hechizos = []
     
+    method agregarHechizo(hechizo) {
+        hechizos.add(hechizo)
+    }
+
     method poder(poderBase) = if(self.hayHechizosEnElLibro()) hechizos.first() else self.nulo()
         
     method usar() {
-        hechizos.drop(hechizos.first())
+        hechizos.remove(hechizos.first())
     }
 
     method hayHechizosEnElLibro() = self.nroDeHechizosEnElLibro() > self.nulo()
@@ -33,11 +37,15 @@ object libroDeHechizos {
     }
 
     method invisibilidad(poderBase) {
-      return poderBase
+      return poderBase + 1
     }
 
     method invocación() {
-      return castillo.hayArtefactoMasPoderoso()
+    if(castillo.noHayArtefactos()) {
+        return self.nulo()
+        } else {
+        return castillo.artefactoMasPoderoso()
+        }
     }
 
     method nulo() {
