@@ -49,12 +49,9 @@ object rolando {
 
     method poderDePelea() = poderBase + mochila.sum({ artefacto => artefacto.poder(poderBase) })
     
-    method aumentarPoderBaseEnUno() {
-      poderBase += 1
-    }
-
     method batallar() {
-      self.aumentarPoderBaseEnUno()
+      poderBase += 1
+      libroDeHechizos.usar()
       mochila.forEach({ artefacto => artefacto.usar() })
     }
 

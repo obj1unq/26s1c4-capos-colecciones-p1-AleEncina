@@ -7,7 +7,7 @@ object castillo {
   method almacen() {
     return almacen
   }
-
+  
   method vaciarAlmacen() {
     return almacen.clear()
   }

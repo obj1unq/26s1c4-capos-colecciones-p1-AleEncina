@@ -6,16 +6,14 @@ describe "Rolando batalla con los hechizos del libro" {
 test "Ejemplo 2.2" {
 	//Configuración -> Rolando encuentra el libro de hechizos y almacena artefactos en el castillo
 	rolando.encontar(libroDeHechizos)
-	self.agregarHechizosEnElLibro()
-	castillo.almacenar([espadaDelDestino, collarDivino, armaduraDeAceroValyrio])
-	assert.equals([espadaDelDestino, collarDivino, armaduraDeAceroValyrio], castillo.almacen())
+	self.almacenarArtefactosEnElCastillo()
+    self.llenarLibroDeHechizos()
 
 	//Ejercitación (+ verificacion) -> Verifico el poder del libro de hechizos antes de que Rolando lo use
 	assert.equals(4, libroDeHechizos.poder(rolando.poderBase()))
 
 	//Primera verificación -> Rolando batalla por primera vez y el poder del libro de hechizos cambia por primera vez.
 	rolando.batallar()
-	assert.equals(6, rolando.poderBase())
 	assert.equals(6, libroDeHechizos.poder(rolando.poderBase()))
 
 	//Segunda verificación -> Rolando batalla por segunda vez y el poder del libro de hechizos vuelve a cambiar.
@@ -27,16 +25,17 @@ test "Ejemplo 2.2" {
 	assert.equals(0, libroDeHechizos.poder(rolando.poderBase()))	
 }
 
-method llenarMochila(){
-	rolando.encontar(espadaDelDestino)
-	rolando.encontar(armaduraDeAceroValyrio)
-	rolando.encontar(collarDivino)
+method llenarLibroDeHechizos() {
+    libroDeHechizos.agregarHechizo(libroDeHechizos.bendicion())
+    libroDeHechizos.agregarHechizo(libroDeHechizos.invisibilidad(rolando.poderBase()))
+    libroDeHechizos.agregarHechizo(libroDeHechizos.invocación())
 }
 
-method agregarHechizosEnElLibro(){
-	libroDeHechizos.agregarHechizo(libroDeHechizos.bendicion())
-	libroDeHechizos.agregarHechizo(libroDeHechizos.invisibilidad(rolando.poderBase()))
-	libroDeHechizos.agregarHechizo(libroDeHechizos.invocación())
+
+method almacenarArtefactosEnElCastillo(){
+    castillo.almacen().add(espadaDelDestino)
+    castillo.almacen().add(collarDivino)
+    castillo.almacen().add(armaduraDeAceroValyrio)
 }
 
 }

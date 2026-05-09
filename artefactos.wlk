@@ -17,15 +17,18 @@ object espadaDelDestino {
 
 object libroDeHechizos {
     const hechizos = []
+    var posicionHechizoActual = 0
     
     method agregarHechizo(hechizo) {
         hechizos.add(hechizo)
     }
 
-    method poder(poderBase) = if(self.hayHechizosEnElLibro()) hechizos.first() else self.nulo()
+    method poder(poderBase) = if(self.hayHechizosEnElLibro()) hechizos.get(posicionHechizoActual) else self.nulo()
         
     method usar() {
-        hechizos.remove(hechizos.first())
+        if(self.hayHechizosEnElLibro()) {
+            posicionHechizoActual += 1
+        }
     }
 
     method hayHechizosEnElLibro() = self.nroDeHechizosEnElLibro() > self.nulo()
@@ -44,7 +47,7 @@ object libroDeHechizos {
     if(castillo.noHayArtefactos()) {
         return self.nulo()
         } else {
-        return castillo.artefactoMasPoderoso()
+        return castillo.artefactoMasPoderoso().poder(rolando.poderBase())
         }
     }
 
