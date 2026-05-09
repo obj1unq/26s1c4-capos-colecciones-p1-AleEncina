@@ -1,0 +1,60 @@
+import rolando.*
+import artefactos.*
+import enemigos.*
+
+describe "Los enemigos se enfrentan a Rolando" {
+test "Ejemplo 2.3" {
+	//Configuración -> Cambio el tamanio de la mochila y la lleno
+	rolando.tamanioMochila(3)
+	self.llenarMochila()
+
+	//Ejercitación (+ verificacion) -> Verifico el poder de pelea de Rolando y los enemigos que puede derrotar
+	assert.equals(19, rolando.poderDePelea())
+    assert.equals([archibaldo, astra], rolando.puedeDerrotar([caterina, archibaldo, astra]))
+
+    //Verificación adicional -> Rolando puede consquistar las ubicaciones de los enemigos que puede derrotar
+    assert.equals(["Palacio de mármol", "Torre de marfil"], rolando.puedeConquistarUbicacionesDe([caterina, archibaldo, astra])) 
+}
+
+test "Ejemplo 2.4" {
+    //Configuración -> Cambio el tamanio de la mochila y la lleno
+    rolando.tamanioMochila(3)
+    self.llenarMochila()
+
+    //Ejercitación (+ verificacion) -> Verifico si Rolando es poderoso ante los enemigos
+    assert.equals(false, rolando.esPoderosoAnte([caterina, archibaldo, astra]))
+
+    //Verificación adicional -> Aumento el poder de pelea de Rolando en 10 y verifico si ahora es poderoso ante los enemigos
+    rolando.poderBase(10)
+    assert.equals(true, rolando.esPoderosoAnte([caterina, archibaldo, astra]))
+}
+
+test "Ejemplo 2.5" {
+    //Configuración -> Cambio el tamanio de la mochila y la lleno con artefactos que son uno fatal contra los enemigos
+    rolando.tamanioMochila(3)
+    self.llenarMochila()
+
+    //Ejercitación (+ verificacion) -> Verifico si Rolando tiene artefactos que son uno fatal contra los enemigos
+    assert.equals(false, rolando.tieneArtefactoFatalContra(caterina))
+    assert.equals(false, rolando.tieneArtefactoFatalContra(archibaldo))
+    assert.equals(false, rolando.tieneArtefactoFatalContra(astra))
+
+    //Verificación adicional -> Rolando batalla 5 veces para aumentar su poder de pelea y verifico nuevamente si tiene artefactos que son uno fatal contra los enemigos
+    self.batallarVeces(5)
+    assert.equals(false, rolando.tieneArtefactoFatalContra(caterina))
+    assert.equals(true, rolando.tieneArtefactoFatalContra(archibaldo))
+    assert.equals(true, rolando.tieneArtefactoFatalContra(astra))
+}
+
+
+method llenarMochila() {
+    rolando.encontar(espadaDelDestino)
+	rolando.encontar(armaduraDeAceroValyrio)
+	rolando.encontar(collarDivino)
+}
+
+method batallarVeces(cantidad) {                        // Repeticion en wollok.
+    cantidad.times({ combatir => rolando.batallar() })  // Otra forma de escribirlo sería: (1..cantidad).forEach({ combatir => rolando.batallar() })
+}
+
+}

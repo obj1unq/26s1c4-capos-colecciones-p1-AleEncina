@@ -40,7 +40,7 @@ object libroDeHechizos {
     }
 
     method invisibilidad(poderBase) {
-      return poderBase + 1
+      return poderBase 
     }
 
     method invocación() {

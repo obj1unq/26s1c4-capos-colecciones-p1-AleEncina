@@ -51,7 +51,6 @@ object rolando {
     
     method batallar() {
       poderBase += 1
-      libroDeHechizos.usar()
       mochila.forEach({ artefacto => artefacto.usar() })
     }
 
@@ -59,9 +58,9 @@ object rolando {
       return enemigos.filter({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
     }
 
-    method puedeConquistarUbicacionesDe(enemigos) = enemigos.map({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
-
-     method esPoderosoAnte(enemigos) = enemigos.all({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
+    method puedeConquistarUbicacionesDe(enemigos) = self.puedeDerrotar(enemigos).map({ enemigo => enemigo.ubicacion() })
+  
+    method esPoderosoAnte(enemigos) = enemigos.all({ enemigo => enemigo.esDebilAnte(self.poderDePelea()) })
     
     method tieneArtefactoFatalContra(enemigo) = mochila.any({ artefacto => artefacto.esUnoFatal(poderBase, enemigo) })
 
