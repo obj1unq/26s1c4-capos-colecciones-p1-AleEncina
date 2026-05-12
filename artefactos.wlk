@@ -17,39 +17,22 @@ object espadaDelDestino {
 
 object libroDeHechizos {
     const hechizos = []
-    var posicionHechizoActual = 0
     
     method agregarHechizo(hechizo) {
         hechizos.add(hechizo)
     }
 
-    method poder(poderBase) = if(self.hayHechizosEnElLibro()) hechizos.get(posicionHechizoActual) else self.nulo()
-        
+    method poder(poderBase) = if(self.hayHechizosEnElLibro()) hechizos.first().poder(poderBase) else self.nulo()
+
     method usar() {
         if(self.hayHechizosEnElLibro()) {
-            posicionHechizoActual += 1
+            hechizos.remove(hechizos.first())
         }
     }
 
     method hayHechizosEnElLibro() = self.nroDeHechizosEnElLibro() > self.nulo()
     
     method nroDeHechizosEnElLibro() = hechizos.size()
-
-    method bendicion() {
-      return 4
-    }
-
-    method invisibilidad(poderBase) {
-      return poderBase 
-    }
-
-    method invocación() {
-    if(castillo.noHayArtefactos()) {
-        return self.nulo()
-        } else {
-        return castillo.artefactoMasPoderoso().poder(rolando.poderBase())
-        }
-    }
 
     method nulo() {
       return 0
@@ -60,6 +43,35 @@ object libroDeHechizos {
     method poderCon(poderBase) = self.poder(poderBase) + poderBase
 }
 
+object hechizoBendicion {
+    method poder(poderBase) = 4
+    
+    method usar() {}    //Aunque como no se usa, se lo necesita para no romper el polimorfismo.
+    
+    method esUnoFatal(poderBase, enemigo) = self.poderCon(poderBase) > enemigo.poderDeCombate()
+
+    method poderCon(poderBase) = self.poder(poderBase) + poderBase
+}
+
+object hechizoInvisibilidad {
+    method poder(poderBase) = poderBase
+    
+    method usar() {}    //Aunque como no se usa, se lo necesita para no romper el polimorfismo.
+    
+    method esUnoFatal(poderBase, enemigo) = self.poderCon(poderBase) > enemigo.poderDeCombate()
+
+    method poderCon(poderBase) = self.poder(poderBase) + poderBase
+}
+
+object hechizoInvocación {
+    method poder(poderBase) = if(castillo.noHayArtefactos()) 0 else castillo.artefactoMasPoderoso().poder(rolando.poderBase())
+    
+    method usar() {}    //Aunque como no se usa, se lo necesita para no romper el polimorfismo.
+    
+    method esUnoFatal(poderBase, enemigo) = self.poderCon(poderBase) > enemigo.poderDeCombate()
+
+    method poderCon(poderBase) = self.poder(poderBase) + poderBase
+}
 
 object collarDivino {
     var cantBatallas = 0

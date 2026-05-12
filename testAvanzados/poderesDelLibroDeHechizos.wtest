@@ -26,9 +26,9 @@ test "Ejemplo 2.2" {
 }
 
 method llenarLibroDeHechizos() {
-    libroDeHechizos.agregarHechizo(libroDeHechizos.bendicion())
-    libroDeHechizos.agregarHechizo(libroDeHechizos.invisibilidad(rolando.poderBase()))
-    libroDeHechizos.agregarHechizo(libroDeHechizos.invocación())
+    libroDeHechizos.agregarHechizo(hechizoBendicion)
+    libroDeHechizos.agregarHechizo(hechizoInvisibilidad)
+    libroDeHechizos.agregarHechizo(hechizoInvocación)
 }
 
 
