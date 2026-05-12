@@ -165,7 +165,7 @@ Los enemigos en Erethia que Rolando puede vencer son aquellos que tienen un pode
 
 #### Requerimientos
 - Saber cuales son los enemigos que Rolando puede vencer
-- Conocer las moradas conquistables por Rolando
+- Conocer las moradas conquistables por Rolando //filtro y mapeo
 
 #### Ejemplo
  
@@ -174,7 +174,7 @@ Las moradas conquistables son el palacio de mármol y la torre de marfil.
 
 ### 2.4 Poderoso
 
-Se considera que Rolando es poderoso en la tierra de Erethia si está en condiciones de vencer a todos los enemigos.
+Se considera que Rolando es poderoso en la tierra de Erethia si está en condiciones de vencer a todos los enemigos. //all
 
 #### Requerimiento
 
@@ -190,8 +190,8 @@ Un artefacto fatal es aquel que le da a Rolando un poder de pelea superior al po
 
 #### Requerimiento
 
-- Requerimiento: Saber si Rolando posee consigo un artefacto fatal para enfrentar un enemigo
-- Obtener de entre los artefactos que lleva consigo rolando, un artefacto fatal para enfrentar a un enemigo
+- Requerimiento: Saber si Rolando posee consigo un artefacto fatal para enfrentar un enemigo //any
+- Obtener de entre los artefactos que lleva consigo rolando, un artefacto fatal para enfrentar a un enemigo //filtrer
 
 #### Ejemplo
 

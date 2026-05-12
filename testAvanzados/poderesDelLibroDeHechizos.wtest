@@ -1,0 +1,33 @@
+import rolando.*
+import artefactos.*
+import castillo.*
+
+describe "Rolando batalla con los hechizos del libro" {
+test "Ejemplo 2.2" {
+	//Configuración -> Rolando encuentra el libro de hechizos y almacena artefactos en el castillo
+	rolando.encontar(libroDeHechizos)
+	self.almacenarArtefactosEnElCastillo()
+
+	//Ejercitación (+ verificacion) -> Verifico el poder del libro de hechizos antes de que Rolando lo use
+	assert.equals(4, libroDeHechizos.poder(rolando.poderBase()))
+
+	//Primera verificación -> Rolando batalla por primera vez y el poder del libro de hechizos cambia por primera vez.
+	rolando.batallar()
+	assert.equals(6, libroDeHechizos.poder(rolando.poderBase()))
+
+	//Segunda verificación -> Rolando batalla por segunda vez y el poder del libro de hechizos vuelve a cambiar.
+	rolando.batallar()
+	assert.equals(7, libroDeHechizos.poder(rolando.poderBase()))
+
+	//Tercera verificación -> Rolando batalla por tercera vez y el poder del libro de hechizos llega a cero.
+	rolando.batallar()
+	assert.equals(0, libroDeHechizos.poder(rolando.poderBase()))	
+}
+
+method almacenarArtefactosEnElCastillo(){
+    castillo.almacen().add(espadaDelDestino)
+    castillo.almacen().add(collarDivino)
+    castillo.almacen().add(armaduraDeAceroValyrio)
+}
+
+}
