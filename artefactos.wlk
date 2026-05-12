@@ -16,7 +16,7 @@ object espadaDelDestino {
 }
 
 object libroDeHechizos {
-    const hechizos = []
+    const hechizos = [hechizoBendicion, hechizoInvisibilidad, hechizoInvocación]
     
     method agregarHechizo(hechizo) {
         hechizos.add(hechizo)

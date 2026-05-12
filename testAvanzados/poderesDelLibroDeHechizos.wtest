@@ -7,7 +7,6 @@ test "Ejemplo 2.2" {
 	//Configuración -> Rolando encuentra el libro de hechizos y almacena artefactos en el castillo
 	rolando.encontar(libroDeHechizos)
 	self.almacenarArtefactosEnElCastillo()
-    self.llenarLibroDeHechizos()
 
 	//Ejercitación (+ verificacion) -> Verifico el poder del libro de hechizos antes de que Rolando lo use
 	assert.equals(4, libroDeHechizos.poder(rolando.poderBase()))
@@ -24,13 +23,6 @@ test "Ejemplo 2.2" {
 	rolando.batallar()
 	assert.equals(0, libroDeHechizos.poder(rolando.poderBase()))	
 }
-
-method llenarLibroDeHechizos() {
-    libroDeHechizos.agregarHechizo(hechizoBendicion)
-    libroDeHechizos.agregarHechizo(hechizoInvisibilidad)
-    libroDeHechizos.agregarHechizo(hechizoInvocación)
-}
-
 
 method almacenarArtefactosEnElCastillo(){
     castillo.almacen().add(espadaDelDestino)
